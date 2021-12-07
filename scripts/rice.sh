@@ -7,7 +7,14 @@
 # bash rice.sh
 
 
-ENDPOINT="http://192.168.64.103:9100"
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
+
+#ENDPOINT="http://192.168.64.103:9100"
+ENDPOINT="https://raw.githubusercontent.com/mitjafelicijan/dfd-rice/master/scripts"
 USERNAME="$(ls /home/)"
 USERFOLDER="/home/$(ls /home/)"
 
