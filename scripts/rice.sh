@@ -37,6 +37,12 @@ print_header () {
 }
 
 
+# info before continuing
+print_header "Using endpoint: (CTRL+C to cancel) [will continue in 10s]"
+echo "Endpoint: $ENDPOINT"
+sleep 10
+
+
 # general update
 print_header "Updating repositories"
 apt update
