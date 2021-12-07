@@ -14,6 +14,6 @@ bash -c "$(wget -q https://raw.github.com/mitjafelicijan/dfd-rice/master/scripts
 
 ```bash
 su
-bash -c "$(wget -q https://raw.github.com/mitjafelicijan/dfd-rice/develop/scripts/rice.sh -O -)"
+bash -c "$(wget -q https://raw.github.com/mitjafelicijan/dfd-rice/develop/scripts/rice.sh -O -)" develop
 ```
 
