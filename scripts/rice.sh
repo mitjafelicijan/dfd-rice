@@ -3,18 +3,18 @@
 # DEBIAN FOR DEVELOPERS
 # MUST BE ROOT
 
-# wget -O rice.sh http://192.168.64.103:9100/rice.sh
-# bash rice.sh
-
-
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
   exit
 fi
 
+BRANCH="master"
+if [ "$1" == "develop" ]; then
+  BRANCH="develop"
+fi
 
-#ENDPOINT="http://192.168.64.103:9100"
-ENDPOINT="https://raw.githubusercontent.com/mitjafelicijan/dfd-rice/master/scripts"
+
+ENDPOINT="https://raw.githubusercontent.com/mitjafelicijan/dfd-rice/$BRANCH/scripts"
 USERNAME="$(ls /home/)"
 USERFOLDER="/home/$(ls /home/)"
 
@@ -35,6 +35,12 @@ reset="\e[0m"
 print_header () {
   echo -e "\n\n${blue_bg}${bold} $1${reset}\n\n"
 }
+
+
+# info before continuing
+print_header "Using endpoint: (CTRL+C to cancel) [will continue in 10s]"
+echo "Endpoint: $ENDPOINT"
+sleep 10
 
 
 # general update
@@ -100,6 +106,13 @@ wget -O "$USERFOLDER/.config/i3/config" "$ENDPOINT/i3"
 chown -Rf $USERNAME:$USERNAME "$USERFOLDER/.config"
 
 
+# i3status config
+print_header "Setting up i3status"
+mkdir -p "$USERFOLDER/.config/i3status"
+wget -O "$USERFOLDER/.config/i3status/config" "$ENDPOINT/i3status"
+chown -Rf $USERNAME:$USERNAME "$USERFOLDER/.config"
+
+
 # terminal emulator
 print_header "Setting up terminal emulator"
 wget -O "$USERFOLDER/.Xdefaults" "$ENDPOINT/Xdefaults"
@@ -112,7 +125,7 @@ apt install -y vim micro xclip xsel
 
 
 # file manager
-print_header "Enabling terminal file manager"
+print_header "Installing terminal file manager"
 apt install -y mc
 
 
