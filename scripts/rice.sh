@@ -106,6 +106,13 @@ wget -O "$USERFOLDER/.config/i3/config" "$ENDPOINT/i3"
 chown -Rf $USERNAME:$USERNAME "$USERFOLDER/.config"
 
 
+# i3status config
+print_header "Setting up i3status"
+mkdir -p "$USERFOLDER/.config/i3status"
+wget -O "$USERFOLDER/.config/i3status/config" "$ENDPOINT/i3status"
+chown -Rf $USERNAME:$USERNAME "$USERFOLDER/.config"
+
+
 # terminal emulator
 print_header "Setting up terminal emulator"
 wget -O "$USERFOLDER/.Xdefaults" "$ENDPOINT/Xdefaults"
