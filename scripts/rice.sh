@@ -6,6 +6,10 @@
 # wget -O rice.sh http://192.168.64.103:9100/rice.sh
 # bash rice.sh
 
+echo $0
+
+exit
+
 
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
