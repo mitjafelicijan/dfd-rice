@@ -9,7 +9,7 @@ if [ "$EUID" -ne 0 ]
 fi
 
 BRANCH="master"
-if [ "$1" = "develop" ]; then
+if [ "$1" == "develop" ]; then
   BRANCH="develop"
 fi
 
