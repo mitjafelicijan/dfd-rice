@@ -37,21 +37,6 @@ print_header () {
 }
 
 
-# fonts
-print_header "Installing additional fonts"
-wget -O ttf.zip "$ENDPOINT/fonts/Hack-v3.003-ttf.zip"
-unzip ttf.zip
-cp ttf/* /usr/local/share/fonts/
-fc-cache -f -v
-rm -rf ttf/
-rm -rf ttf.zip
-
-exit
-
-
-
-
-
 # general update
 print_header "Updating repositories"
 apt update
@@ -218,7 +203,7 @@ print_header "Cleaning up"
 apt update
 apt autoremove -y
 apt autoclean -y
-rm rice.sh
+
 
 # restart after done
 print_header "Rebooting system in 15 seconds ... You can CTRL+C to cancel reboot"
