@@ -118,7 +118,7 @@ apt install -y vim micro xclip xsel
 
 
 # file manager
-print_header "Enabling terminal file manager"
+print_header "Installing terminal file manager"
 apt install -y mc
 
 
