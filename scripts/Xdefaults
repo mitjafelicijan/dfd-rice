@@ -7,3 +7,4 @@ URxvt*shading:       16
 *foreground: rgb:fb/fb/fb
 *background: rgb:11/11/11
 URxvt.internalBorder:  5
+
