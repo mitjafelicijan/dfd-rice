@@ -6,14 +6,15 @@
 ### Stable
 
 ```bash
-su
-bash -c "$(wget -q https://raw.github.com/mitjafelicijan/dfd-rice/master/scripts/rice.sh -O -)"
+su - root \
+    bash -c "$(wget -q https://raw.github.com/mitjafelicijan/dfd-rice/master/tools/install.sh -O -)"
 ```
 
 ### Development
 
 ```bash
-su
-bash -c "$(wget -q https://raw.github.com/mitjafelicijan/dfd-rice/develop/scripts/rice.sh -O -)" develop
+su - root \
+    bash -c "$(wget -q https://raw.github.com/mitjafelicijan/dfd-rice/develop/tools/install.sh -O -)" -- \
+    @develop
 ```
 

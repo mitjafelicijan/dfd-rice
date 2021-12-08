@@ -11,8 +11,14 @@ BLUEBG="\e[0;104m\e[K"
 RESET="\e[0m"
 BOLD="\e[1m"
 
+# branch management
+BRANCH="master"
+if [ "$1" == "@develop" ]; then
+    BRANCH="develop"
+fi
+
 # source endpoint
-ENDPOINT="https://raw.githubusercontent.com/mitjafelicijan/dfd-rice/$BRANCH/scripts"
+ENDPOINT="https://raw.githubusercontent.com/mitjafelicijan/dfd-rice/$BRANCH/tools"
 
 # check if user is root, otherwise exit
 if [ "$EUID" -ne 0 ]
@@ -69,13 +75,12 @@ if check_for_feature "wifi"; then
     apt install -y network-manager
 fi
 
-
 # desktop environment
 if check_for_feature "desktop"; then
     print_header "Installing i3 desktop environment"
     apt install -y xorg i3 i3blocks lua5.4 xss-lock
 
-    wget -O "$USERFOLDER/.xsession" "$ENDPOINT/xsession"
+    wget -O "$USERFOLDER/.xsession" "$ENDPOINT/config/xsession"
     chown $USERNAME:$USERNAME "$USERFOLDER/.xsession"
 
     echo "[[ -z \$DISPLAY && \$XDG_VTNR -eq 1 ]] && exec startx" > "$USERFOLDER/.bash_profile"
@@ -93,19 +98,19 @@ if check_for_feature "desktop"; then
     # i3 config
     print_header "Setting up i3 enviroment"
     mkdir -p "$USERFOLDER/.config/i3"
-    wget -O "$USERFOLDER/.config/i3/config" "$ENDPOINT/i3"
+    wget -O "$USERFOLDER/.config/i3/config" "$ENDPOINT/config/i3"
     chown -Rf $USERNAME:$USERNAME "$USERFOLDER/.config"
 
 
     # i3status config
     print_header "Setting up i3status"
     mkdir -p "$USERFOLDER/.config/i3status"
-    wget -O "$USERFOLDER/.config/i3status/config" "$ENDPOINT/i3status"
+    wget -O "$USERFOLDER/.config/i3status/config" "$ENDPOINT/config/i3status"
     chown -Rf $USERNAME:$USERNAME "$USERFOLDER/.config"
 
     # terminal emulator
     print_header "Setting up terminal emulator"
-    wget -O "$USERFOLDER/.Xdefaults" "$ENDPOINT/Xdefaults"
+    wget -O "$USERFOLDER/.Xdefaults" "$ENDPOINT/config/Xdefaults"
     chown $USERNAME:$USERNAME "$USERFOLDER/.Xdefaults"
 fi
 
