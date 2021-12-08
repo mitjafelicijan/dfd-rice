@@ -145,7 +145,7 @@ if check_for_feature "code-editors"; then
 fi
 
 # ohmybash
-if check_for_feature "code-ohmybash"; then
+if check_for_feature "ohmybash"; then
     print_header "Enabling OhMyBash"
     sudo -u $USERNAME sh -c "$(curl -fsSL https://raw.github.com/ohmybash/oh-my-bash/master/tools/install.sh)" &
     T1=${!}
@@ -153,7 +153,7 @@ if check_for_feature "code-ohmybash"; then
 fi
 
 # file manager
-if check_for_feature "file-manager"; then
+if check_for_feature "file-managers"; then
     print_header "Installing terminal file manager"
     apt install -y mc
 fi
@@ -202,7 +202,7 @@ if check_for_feature "nodejs"; then
 fi
 
 # golang
-if check_for_feature "nodejs"; then
+if check_for_feature "golang"; then
     print_header "Installing Golang"
     apt install -y Golang
 fi
