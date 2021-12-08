@@ -71,7 +71,10 @@ fi
 # essential utils
 if check_for_feature "essentials"; then
     print_header "Installing essential software"
-    apt install -y htop git zip sqlite3 tree apt-transport-https curl gnupg software-properties-common build-essential cmake
+    apt install -y \
+        htop git zip sqlite3 tree hwinfo \
+        apt-transport-https curl \
+        gnupg software-properties-common build-essential cmake
 fi
 
 # general wifi settings with terminal ui
