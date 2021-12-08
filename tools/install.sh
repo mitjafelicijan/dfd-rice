@@ -166,13 +166,27 @@ if check_for_feature "git-ui"; then
     rm gitui.tar.gz
 fi
 
+# meld diff tool
+if check_for_feature "meld"; then
+    print_header "Installing Meld Diff tool"
+    apt install -y meld
+fi
+
+# profiling tools
+if check_for_feature "profiling"; then
+    print_header "Installing profiling tools"
+    apt install kcachegrind pyprof2calltree valgrind strace ltrace
+fi
+
 # install browsers
 if check_for_feature "browsers"; then
     curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
     echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
     apt update
     print_header "Installing web browsers"
-    apt install -y brave-browser firefox-esr
+    apt install -y brave-browser
+    apt install -y firefox-esr
+    apt install -y chromium chromium-l10n
 fi
 
 # python stuff
@@ -203,6 +217,18 @@ fi
 if check_for_feature "nim"; then
     print_header "Installing Nim"
     apt install -y nim
+fi
+
+# php
+if check_for_feature "php"; then
+print_header "Installing PHP"
+    apt install -y php-cli
+fi
+
+# ruby
+if check_for_feature "ruby"; then
+print_header "Installing Ruby"
+    apt install -y ruby
 fi
 
 # docker
