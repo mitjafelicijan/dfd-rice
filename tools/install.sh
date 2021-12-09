@@ -109,7 +109,6 @@ if check_for_feature "desktop"; then
     wget -O "$USERFOLDER/.config/i3/config" "$ENDPOINT/config/i3"
     chown -Rf $USERNAME:$USERNAME "$USERFOLDER/.config"
 
-
     # i3status config
     print_header "Setting up i3status"
     mkdir -p "$USERFOLDER/.config/i3status"
