@@ -1,6 +1,7 @@
 set $mod Mod4
 
 font pango:Hack Bold 9
+for_window [class="^.*"] border pixel 2
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
@@ -11,6 +12,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
+bindsym $mod+Print exec maim $(date +$HOME/Pictures/Screenshot_%Y-%m-%d_%H%M%S.png)
+bindsym $mod+Shift+Print exec maim -s $(date +$HOME/Pictures/Screenshot_%Y-%m-%d_%H%M%S.png)
 
 floating_modifier $mod
 

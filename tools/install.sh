@@ -72,9 +72,10 @@ fi
 if check_for_feature "essentials"; then
     print_header "Installing essential software"
     apt install -y \
-        htop git zip sqlite3 tree hwinfo \
+        htop git zip sqlite3 tree hwinfo xz-utils \
         apt-transport-https curl \
-        gnupg software-properties-common build-essential cmake
+        gnupg software-properties-common build-essential cmake \
+        nmap rsync fzf
 fi
 
 # general wifi settings with terminal ui
@@ -119,6 +120,12 @@ if check_for_feature "desktop"; then
     print_header "Setting up terminal emulator"
     wget -O "$USERFOLDER/.Xdefaults" "$ENDPOINT/config/Xdefaults"
     chown $USERNAME:$USERNAME "$USERFOLDER/.Xdefaults"
+fi
+
+# ati drivers
+if check_for_feature "ati"; then
+    print_header "Installing AMD ATI drivers"
+    apt install -y firmware-amd-graphics
 fi
 
 # pulseaudio
@@ -171,10 +178,22 @@ if check_for_feature "meld"; then
     apt install -y meld
 fi
 
+# image viewer
+if check_for_feature "image-viewer"; then
+    print_header "Installing Image viewer"
+    apt install -y feh
+fi
+
+# image viewer
+if check_for_feature "screenshots"; then
+    print_header "Installing Screenshot tools"
+    apt install -y maim
+fi
+
 # profiling tools
 if check_for_feature "profiling"; then
     print_header "Installing profiling tools"
-    apt install kcachegrind pyprof2calltree valgrind strace ltrace
+    apt install -y kcachegrind pyprof2calltree valgrind strace ltrace
 fi
 
 # install browsers
@@ -220,13 +239,13 @@ fi
 
 # php
 if check_for_feature "php"; then
-print_header "Installing PHP"
+    print_header "Installing PHP"
     apt install -y php-cli
 fi
 
 # ruby
 if check_for_feature "ruby"; then
-print_header "Installing Ruby"
+    print_header "Installing Ruby"
     apt install -y ruby
 fi
 
@@ -245,11 +264,32 @@ if check_for_feature "docker"; then
     /sbin/usermod -aG docker $USERNAME
 fi
 
+# virtualbox
+if check_for_feature "virtualbox"; then
+    print_header "Installing Virtualbox"
+    apt install -y virtualbox virtualbox-ext-pack
+    adduser $USERNAME vboxusers
+fi
+
 # ansible
 if check_for_feature "ansible"; then
     print_header "Installing Ansible"
     apt install -y ansible
 fi
+
+# flatpak
+if check_for_feature "flatpak"; then
+    print_header "Installing Flatpak"
+    apt install -y flatpak
+fi
+
+# mlocate
+if check_for_feature "mlocate"; then
+    print_header "Installing mlocate"
+    apt install -y mlocate
+    updatedb
+fi
+
 
 # do apt check and clean up
 print_header "Cleaning up"

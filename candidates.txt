@@ -1,0 +1,22 @@
+[x] AMD ATI Graphics card
+    sudo apt install firmware-amd-graphics
+
+[x] Virtualbox with USB passthrough enabled
+    sudo apt install virtualbox virtualbox-ext-pack
+    sudo adduser $USER vboxusers
+
+[x] Screenshot
+    sudo apt install maim
+
+[x] Compression
+    sudo apt install xz-utils
+
+[x] Image viewer
+    sudo apt install feh
+
+[x] MLocate
+    sudo apt install mlocate
+    sudo updatedb
+
+[x] Flatpak
+    sudo apt install flatpak

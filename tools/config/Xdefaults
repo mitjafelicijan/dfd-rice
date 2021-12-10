@@ -1,10 +1,25 @@
 URxvt*font: xft:Hack:pixelsize=12:antialias=true:hinting=true
 URxvt*boldFont: xft:Hack:bold:pixelsize=12:antialias=true:hinting=true
-URxvt.scrollBar: false
-URxvt*inheritPixmap: true
-URxvt*transperentp:  true
-URxvt*shading:       16
-*foreground: rgb:fb/fb/fb
-*background: rgb:11/11/11
+
+URxvt.scrollBar:       false
+URxvt*inheritPixmap:   true
+URxvt*transperentp:    true
+URxvt*shading:         16
 URxvt.internalBorder:  5
 
+! https://wiki.archlinux.org/title/Color_output_in_console#Terminal_emulators
+
+*foreground: rgb:fb/fb/fb
+*background: rgb:11/11/11
+
+! DarkBlue + Blue
+*color4: #268bd2
+*color12: #26d2c3
+
+! Black + DarkGrey
+*color0:  #000000
+*color8:  #cccccc
+
+! DarkRed + Red
+*color1:  #ff6565
+*color9:  #ff8d8d
